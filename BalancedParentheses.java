@@ -1,0 +1,40 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Scanner;
+
+public class BalancedParentheses {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            char[] parentheses = scanner.nextLine().toCharArray();
+            Deque<Character> stack = new ArrayDeque<>();
+            boolean result = true;
+
+            for (char current : parentheses) {
+                switch (current) {
+                    case '(':
+                        stack.push(')');
+                        break;
+                    case '{':
+                        stack.push('}');
+                        break;
+                    case ')':
+                    case '}':
+                        if (stack.isEmpty() || stack.pop() != current) {
+                            result = false;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            if (result&&stack.isEmpty()) {
+                System.out.println("true");
+            } else {
+                System.out.println("false");
+            }
+        }
+    }
+}
